@@ -12,9 +12,9 @@ TRACE;DEBUG;NET;NET6_0;NETCOREAPP
 
 31636901428
 
-11727415529
+131193432814
 1941905061893
 Controls\ComboBoxControl.xaml;Controls\PasswordBoxControl.xaml;Controls\TextBoxControl.xaml;
 
-True
+False
 
