@@ -12,8 +12,10 @@ namespace WpfLib.Controls
   /// </summary>
   public partial class ControlSlider : UserControl, INotifyPropertyChanged
   {
+    #region Fields
     private ContentControl _backContent;
     private ContentControl _frontContent;
+    private ContentControl? _lastContent;
 
     private Storyboard _slideLeftToRight;
     private Storyboard _slideRightToLeft;
@@ -21,10 +23,23 @@ namespace WpfLib.Controls
     private Storyboard _slideBottomToTop;
 
     private Duration? _duration;
+    #endregion
 
+    #region Private Methods
     private void OnPropertyChanged([CallerMemberName] string? propertyName = null)
     {
       PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
+    }
+
+    private static void ViewModelChanged(DependencyObject d, DependencyPropertyChangedEventArgs e)
+    {
+      ControlSlider? slider = (ControlSlider?)d;
+      if (slider == null) return;
+
+      if (e.NewValue != e.OldValue)
+      {
+        slider.Slide(e.NewValue, slider.SlideType);
+      }
     }
 
     private void BeginSlideStoryboard(Storyboard storyboard)
@@ -36,10 +51,15 @@ namespace WpfLib.Controls
 
     private void Slide_Complete(object sender, EventArgs e)
     {
-      _backContent.Visibility = Visibility.Collapsed;
-      _backContent = _frontContent;
+      if (_lastContent != _backContent)
+      {
+        _backContent.Visibility = Visibility.Collapsed;
+        _backContent = _frontContent;
+      }
     }
+    #endregion
 
+    #region Constructor
     public ControlSlider()
     {
       InitializeComponent();
@@ -51,9 +71,13 @@ namespace WpfLib.Controls
       _backContent = content2;
       _frontContent = content1;
     }
+    #endregion
 
+    #region Events
     public event PropertyChangedEventHandler? PropertyChanged;
+    #endregion
 
+    #region Properties
     public Duration? Duration
     {
       get
@@ -74,6 +98,20 @@ namespace WpfLib.Controls
       }
     }
 
+    public SlideType SlideType
+    {
+      get { return (SlideType)GetValue(SlideTypeProperty); }
+      set { SetValue(SlideTypeProperty, value); }
+    }
+
+    public INotifyPropertyChanged ViewModel
+    {
+      get { return (INotifyPropertyChanged)GetValue(ViewModelProperty); }
+      set { SetValue(ViewModelProperty, value); }
+    }
+    #endregion
+
+    #region Methods
     public void SetAnimationSpeed(int milliseconds)
     {
       Duration = new Duration(new TimeSpan(0, 0, 0, 0, milliseconds));
@@ -99,6 +137,7 @@ namespace WpfLib.Controls
 
       _frontContent.Visibility = Visibility.Visible;
       _frontContent.Content = newContent;
+      _lastContent = _frontContent;
 
       switch (slideType)
       {
@@ -116,5 +155,13 @@ namespace WpfLib.Controls
           break;
       }
     }
+    #endregion
+
+    #region DependencyProperties
+    public static readonly DependencyProperty SlideTypeProperty =
+        DependencyProperty.Register("SlideType", typeof(SlideType), typeof(ControlSlider), new UIPropertyMetadata(SlideType.LeftToRight));
+    public static readonly DependencyProperty ViewModelProperty =
+        DependencyProperty.Register("ViewModel", typeof(INotifyPropertyChanged), typeof(ControlSlider), new UIPropertyMetadata(null, ViewModelChanged));
+    #endregion
   }
 }
