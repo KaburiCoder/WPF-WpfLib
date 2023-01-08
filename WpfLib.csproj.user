@@ -5,6 +5,9 @@
     <Compile Update="Controls\ComboBoxControl.xaml.cs">
       <SubType>Code</SubType>
     </Compile>
+    <Compile Update="Controls\ControlSlider.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
     <Compile Update="Controls\PasswordBoxControl.xaml.cs">
       <SubType>Code</SubType>
     </Compile>
@@ -14,6 +17,9 @@
   </ItemGroup>
   <ItemGroup>
     <Page Update="Controls\ComboBoxControl.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="Controls\ControlSlider.xaml">
       <SubType>Designer</SubType>
     </Page>
     <Page Update="Controls\PasswordBoxControl.xaml">

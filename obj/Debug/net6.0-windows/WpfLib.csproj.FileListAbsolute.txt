@@ -20,3 +20,5 @@ C:\YoutubeLecture\WpfLib\obj\Debug\net6.0-windows\Controls\PasswordBoxControl.g.
 C:\YoutubeLecture\WpfLib\obj\Debug\net6.0-windows\Controls\PasswordBoxControl.baml
 C:\YoutubeLecture\WpfLib\obj\Debug\net6.0-windows\Controls\ComboBoxControl.g.cs
 C:\YoutubeLecture\WpfLib\obj\Debug\net6.0-windows\Controls\ComboBoxControl.baml
+C:\YoutubeLecture\WpfLib\obj\Debug\net6.0-windows\Controls\ControlSlider.g.cs
+C:\YoutubeLecture\WpfLib\obj\Debug\net6.0-windows\Controls\ControlSlider.baml

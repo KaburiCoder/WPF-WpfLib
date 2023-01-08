@@ -10,11 +10,11 @@ none
 false
 TRACE;DEBUG;NET;NET6_0;NETCOREAPP
 
-31636901428
+4-670681311
 
-11-2117361045
+14-1275240963
 1941905061893
-Controls\ComboBoxControl.xaml;Controls\PasswordBoxControl.xaml;Controls\TextBoxControl.xaml;
+Controls\ComboBoxControl.xaml;Controls\ControlSlider.xaml;Controls\PasswordBoxControl.xaml;Controls\TextBoxControl.xaml;
 
 False
 
