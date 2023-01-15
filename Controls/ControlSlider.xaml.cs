@@ -54,6 +54,7 @@ namespace WpfLib.Controls
       if (_lastContent != _backContent)
       {
         _backContent.Visibility = Visibility.Collapsed;
+        _backContent.Content = null;
         _backContent = _frontContent;
       }
     }

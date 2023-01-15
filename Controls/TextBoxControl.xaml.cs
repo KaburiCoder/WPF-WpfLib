@@ -65,6 +65,12 @@ namespace WpfLib.Controls
       get { return (string)GetValue(TextProperty); }
       set { SetValue(TextProperty, value); }
     }
-    #endregion   
+    #endregion
+
+    private void txt_TextChanged(object sender, TextChangedEventArgs e)
+    {
+      TextBox? textBox = (TextBox)e.OriginalSource;
+      Text = textBox?.Text ?? "";
+    }
   }
 }
